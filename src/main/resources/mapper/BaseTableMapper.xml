@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.BaseTableMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.BaseTable">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="ip_type" jdbcType="VARCHAR" property="ipType" />
+    <result column="ip_user" jdbcType="VARCHAR" property="ipUser" />
+    <result column="ip_pass" jdbcType="VARCHAR" property="ipPass" />
+    <result column="port_all" jdbcType="VARCHAR" property="portAll" />
+    <result column="port_rx" jdbcType="VARCHAR" property="portRx" />
+    <result column="port_crc" jdbcType="VARCHAR" property="portCrc" />
+    <result column="ip_factory" jdbcType="VARCHAR" property="ipFactory" />
+  </resultMap>
+</mapper>

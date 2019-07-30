@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.PortAutoChackMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.PortAutoChack">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="equip_port" jdbcType="VARCHAR" property="equipPort" />
+    <result column="equip_ip" jdbcType="VARCHAR" property="equipIp" />
+    <result column="equip_port_rt" jdbcType="VARCHAR" property="equipPortRt" />
+    <result column="equip_port_err" jdbcType="VARCHAR" property="equipPortErr" />
+    <result column="chack_time" jdbcType="DATE" property="chackTime" />
+  </resultMap>
+</mapper>

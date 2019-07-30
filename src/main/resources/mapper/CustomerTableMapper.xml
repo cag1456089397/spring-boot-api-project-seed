@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.CustomerTableMapper">
+  <resultMap id="customerTable" type="com.company.project.model.CustomerTable">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="customer" jdbcType="VARCHAR" property="customer" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="produce_number" jdbcType="VARCHAR" property="produceNumber" />
+    <result column="network_name" jdbcType="VARCHAR" property="networkName" />
+    <result column="network_name_other" jdbcType="VARCHAR" property="networkNameOther" />
+    <result column="network_ip" jdbcType="VARCHAR" property="networkIp" />
+    <result column="network_port" jdbcType="VARCHAR" property="networkPort" />
+    <result column="insert_name" jdbcType="VARCHAR" property="insertName" />
+    <result column="insert_name_other" jdbcType="VARCHAR" property="insertNameOther" />
+    <result column="insert_ip" jdbcType="VARCHAR" property="insertIp" />
+    <result column="insert_port" jdbcType="VARCHAR" property="insertPort" />
+    <result column="vlan_id" jdbcType="VARCHAR" property="vlanId" />
+    <result column="wf_id" jdbcType="VARCHAR" property="wfId" />
+    <result column="electric_id" jdbcType="VARCHAR" property="electricId" />
+    <result column="connect_ip" jdbcType="VARCHAR" property="connectIp" />
+    <result column="user_ip" jdbcType="VARCHAR" property="userIp" />
+    <result column="ip_num" jdbcType="INTEGER" property="ipNum" />
+    <result column="insert_speed" jdbcType="INTEGER" property="insertSpeed" />
+    <result column="link_people" jdbcType="VARCHAR" property="linkPeople" />
+    <result column="link_phone" jdbcType="VARCHAR" property="linkPhone" />
+    <result column="customer_address" jdbcType="VARCHAR" property="customerAddress" />
+    <result column="open_date" jdbcType="TIMESTAMP" property="openDate" />
+    <result column="up_date" jdbcType="TIMESTAMP" property="upDate" />
+    <result column="same_band" jdbcType="VARCHAR" property="sameBand" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="is_80" jdbcType="VARCHAR" property="is80" />
+  </resultMap>
+
+  <!--查询-->
+  <select id="selectUsers" resultMap="customerTable">
+        select * from customer_table
+   </select>
+
+  <update id="updateUserByName" >
+    update customer_table set id=#{id},
+
+    <if test="customer!=null and customer!=''">
+      customer=#{customer},
+    </if>
+    <if test="businessType!=null and businessType!=''">
+      business_type=#{businessType},
+    </if>
+    <if test="produceNumber!=null and produceNumber!=''">
+      produce_number=#{produceNumber},
+    </if>
+    <if test="networkName!=null and networkName!=''">
+      network_name=#{networkName},
+    </if>
+    <if test="networkNameOther!=null and networkNameOther!=''">
+      network_name_other=#{networkNameOther},
+    </if>
+    <if test="networkIp!=null and networkIp!=''">
+      network_ip=#{networkIp},
+    </if>
+    <if test="networkPort!=null and networkPort!=''">
+      network_port=#{networkPort},
+    </if>
+    <if test="insertName!=null and insertName!=''">
+      insert_name=#{insertName},
+    </if>
+     <if test="insertNameOther!=null and insertNameOther!=''">
+       insert_name_other=#{insertNameOther},
+  </if>
+    <if test="insertIp!=null and insertIp!=''">
+      insert_ip=#{insertIp},
+    </if>
+    <if test="insertPort!=null and insertPort!=''">
+      insert_port=#{insertPort},
+    </if>
+    <if test="vlanId!=null and vlanId!=''">
+      vlan_id=#{vlanId},
+    </if>
+    <if test="wfId!=null and wfId!=''">
+      wf_id=#{wfId},
+    </if>
+    <if test="electricId!=null and electricId!=''">
+      electric_id=#{electricId},
+    </if>
+    <if test="connectIp!=null and connectIp!=''">
+      connect_ip=#{connectIp},
+    </if>
+    <if test="userIp!=null and userIp!=''">
+      user_ip=#{userIp},
+    </if>
+    <if test="ipNum!=null and ipNum!=''">
+      ip_num=#{ipNum},
+    </if>
+    <if test="insertSpeed!=null and insertSpeed!=''">
+      insert_speed=#{insertSpeed},
+    </if>
+    <if test="linkPeople!=null and linkPeople!=''">
+      link_people=#{linkPeople},
+    </if>
+    <if test="linkPhone!=null and linkPhone!=''">
+      link_phone=#{linkPhone},
+    </if>
+    <if test="customerAddress!=null and customerAddress!=''">
+      customer_address=#{customerAddress},
+    </if>
+     <if test="openDate!=null">
+      open_date=#{openDate},
+    </if>
+    <if test="upDate!=null">
+      up_date=#{upDate},
+    </if>
+    <if test="sameBand!=null and sameBand!=''">
+      same_band=#{sameBand},
+    </if>
+    <if test="remark!=null and remark!=''">
+      remark=#{remark},
+    </if>
+     <if test="is80!=null and is80!=''">
+      is_80=#{is80},
+    </if>
+    id=#{id} where id=#{id};
+    </update>
+
+<!--插入和修改有待修改-->
+  <insert id="addUser" >
+        INSERT INTO  customer_table (customer,business_type,produce_number,network_name,network_name_other,network_ip,
+                                     network_port,insert_name,insert_name_other,insert_ip,insert_port,vlan_id,wf_id,electric_id,
+                                     connect_ip,user_ip,ip_num,insert_speed,link_people,link_phone,customer_address,
+                                     open_date,up_date,same_band,remark,is_80)
+                         VALUES (#{customer},#{businessType},#{produceNumber},#{networkName},#{networkNameOther},#{networkIp},
+                                 #{networkPort},#{insertName},#{insertNameOther},#{insertIp},#{insertPort},#{vlanId},#{wfId},#{electricId},
+                                 #{connectIp},#{userIp},#{ipNum},#{insertSpeed},#{linkPeople},#{linkPhone},#{customerAddress},
+                                 #{openDate},#{upDate},#{sameBand},#{remark},#{is80})
+    </insert>
+
+   <select id="selectByWfIdAndElectricId" resultType="Integer">
+        SELECT count(*) FROM customer_table WHERE wf_id=#{arg0} and electric_id=#{arg1}
+   </select>
+  <select id="selectByTwo" resultMap="customerTable">
+        SELECT * FROM customer_table WHERE wf_id=#{arg0} and electric_id=#{arg1}
+   </select>
+
+
+  <select id="selectUsersByAll" resultMap="customerTable">
+    select *
+    from customer_table
+    where 1=1
+    <if test="customer!=null and customer!=''">
+    and customer like "%"#{customer}"%"
+  </if>
+    <if test="wfId!=null and wfId!=''">
+      and wf_id like  "%"#{wfId}"%"
+    </if>
+    <if test="userIp!=null and userIp!=''">
+     and user_ip like "%"#{userIp}"%"
+    </if>
+    <if test="produceNumber!=null and produceNumber!=''">
+      and produce_number like "%"#{produceNumber}"%"
+    </if>
+   </select>
+  <!--自动填充-->
+  <select id="selectUsersByAutoPut" resultMap="customerTable">
+    select *
+    from customer_table
+    where 1=1
+    <if test="produceNumber!=null and produceNumber!=''">
+      and produce_number like "%"#{produceNumber}"%"
+    </if>
+    <if test="networkName!=null and networkName!=''">
+      and network_name like "%"#{networkName}"%"
+    </if>
+    <if test="networkNameOther!=null and networkNameOther!=''">
+      and network_name_other like  "%"#{networkNameOther}"%"
+    </if>
+    <if test="networkIp!=null and networkIp!=''">
+      and network_ip = #{networkIp}
+    </if>
+    <if test="insertName!=null and insertName!=''">
+      and insert_name like "%"#{insertName}"%"
+    </if>
+    <if test="insertNameOther!=null and insertNameOther!=''">
+      and insert_name_other like  "%"#{insertNameOther}"%"
+    </if>
+    <if test="insertIp!=null and insertIp!=''">
+      and insert_ip = #{insertIp}
+    </if>
+
+  </select>
+
+
+ <!--
+ ***************************************************************************************
+  -->
+  <!-- 查询客户-->
+<select id="queryCustomerTable" resultMap="customerTable">
+    SELECT * from customer_table where 1=1
+  <if test="produceNumber!=null and produceNumber!=''">
+    and produce_number like "%"#{produceNumber}"%"
+  </if>
+  <if test="networkName!=null and networkName!=''">
+    and network_name like "%"#{networkName}"%"
+  </if>
+  <if test="networkNameOther!=null and networkNameOther!=''">
+    and network_name_other like  "%"#{networkNameOther}"%"
+  </if>
+  <if test="networkIp!=null and networkIp!=''">
+    and network_ip = #{networkIp}
+  </if>
+  <if test="insertName!=null and insertName!=''">
+    and insert_name like "%"#{insertName}"%"
+  </if>
+  <if test="insertNameOther!=null and insertNameOther!=''">
+    and insert_name_other like  "%"#{insertNameOther}"%"
+  </if>
+  <if test="insertIp!=null and insertIp!=''">
+    and insert_ip = #{insertIp}
+  </if>
+  <if test="customer!=null and customer!=''">
+    and customer like "%"#{customer}"%"
+  </if>
+  <if test="wfId!=null and wfId!=''">
+    and wf_id =#{wfId}
+  </if>
+  <if test="userIp!=null and userIp!=''">
+    and user_ip like "%"#{userIp}"%"
+  </if>
+  <if test="produceNumber!=null and produceNumber!=''">
+    and produce_number like "%"#{produceNumber}"%"
+  </if>
+
+  <if test="id!=null and id!=''">
+   and id=#{id}
+  </if>
+
+  </select>
+
+  <!-- 修改客户-->
+  <update id="updateCustomerTable" >
+    update customer_table set id=#{id},
+      customer=#{customer},
+      business_type=#{businessType},
+      produce_number=#{produceNumber},
+      network_name=#{networkName},
+      network_name_other=#{networkNameOther},
+      network_ip=#{networkIp},
+      network_port=#{networkPort},
+      insert_name=#{insertName},
+      insert_name_other=#{insertNameOther},
+      insert_ip=#{insertIp},
+      insert_port=#{insertPort},
+      vlan_id=#{vlanId},
+      wf_id=#{wfId},
+      electric_id=#{electricId},
+      connect_ip=#{connectIp},
+      user_ip=#{userIp},
+      ip_num=#{ipNum},
+      insert_speed=#{insertSpeed},
+      link_people=#{linkPeople},
+     link_phone=#{linkPhone},
+      customer_address=#{customerAddress},
+      open_date=#{openDate},
+      up_date=#{upDate},
+      same_band=#{sameBand},
+      remark=#{remark},
+      is_80=#{is80}
+    where id=#{id};
+  </update>
+
+   <!-- 添加客户-->
+  <insert id="addCustomerTable" >
+        INSERT INTO  customer_table (customer,business_type,produce_number,network_name,network_name_other,network_ip,
+                                     network_port,insert_name,insert_name_other,insert_ip,insert_port,vlan_id,wf_id,electric_id,
+                                     connect_ip,user_ip,ip_num,insert_speed,link_people,link_phone,customer_address,
+                                     open_date,up_date,same_band,remark,is_80)
+                         VALUES (#{customer},#{businessType},#{produceNumber},#{networkName},#{networkNameOther},#{networkIp},
+                                 #{networkPort},#{insertName},#{insertNameOther},#{insertIp},#{insertPort},#{vlanId},#{wfId},#{electricId},
+                                 #{connectIp},#{userIp},#{ipNum},#{insertSpeed},#{linkPeople},#{linkPhone},#{customerAddress},
+                                 #{openDate},#{upDate},#{sameBand},#{remark},#{is80})
+    </insert>
+
+
+  <!-- 删除客户-->
+  <delete id="deleteCustomerTable">
+    delete from customer_table where id=#{id}
+  </delete>
+</mapper>

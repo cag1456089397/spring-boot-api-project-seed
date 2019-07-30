@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.HistoryCustomerTableMapper">
+  <resultMap id="HistoryCustomerTable" type="com.company.project.model.HistoryCustomerTable">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="electric_id" jdbcType="VARCHAR" property="electricId" />
+    <result column="connect_ip" jdbcType="VARCHAR" property="connectIp" />
+    <result column="ip_num" jdbcType="INTEGER" property="ipNum" />
+    <result column="insert_speed" jdbcType="INTEGER" property="insertSpeed" />
+    <result column="customer" jdbcType="VARCHAR" property="customer" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="produce_number" jdbcType="VARCHAR" property="produceNumber" />
+    <result column="network_name" jdbcType="VARCHAR" property="networkName" />
+    <result column="network_name_other" jdbcType="VARCHAR" property="networkNameOther" />
+    <result column="network_ip" jdbcType="VARCHAR" property="networkIp" />
+    <result column="network_port" jdbcType="VARCHAR" property="networkPort" />
+    <result column="insert_name" jdbcType="VARCHAR" property="insertName" />
+    <result column="insert_ip" jdbcType="VARCHAR" property="insertIp" />
+    <result column="insert_name_other" jdbcType="VARCHAR" property="insertNameOther" />
+    <result column="insert_port" jdbcType="VARCHAR" property="insertPort" />
+    <result column="vlan_id" jdbcType="VARCHAR" property="vlanId" />
+    <result column="link_people" jdbcType="VARCHAR" property="linkPeople" />
+    <result column="link_phone" jdbcType="VARCHAR" property="linkPhone" />
+    <result column="customer_address" jdbcType="VARCHAR" property="customerAddress" />
+    <result column="open_date" jdbcType="TIMESTAMP" property="openDate" />
+    <result column="up_date" jdbcType="TIMESTAMP" property="upDate" />
+    <result column="same_band" jdbcType="VARCHAR" property="sameBand" />
+    <result column="is_80" jdbcType="VARCHAR" property="is80" />
+    <result column="delete_date" jdbcType="DATE" property="deleteDate" />
+    <result column="wf_id" jdbcType="LONGVARCHAR" property="wfId" />
+    <result column="user_ip" jdbcType="LONGVARCHAR" property="userIp" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+
+  <select id="list" resultMap="HistoryCustomerTable">
+  select * from  history_customer_table where 1=1
+    <if test="produceNumber!=null and produceNumber!=''">
+      and produce_number like "%"#{produceNumber}"%"
+    </if>
+    <if test="networkName!=null and networkName!=''">
+      and network_name like "%"#{networkName}"%"
+    </if>
+    <if test="networkNameOther!=null and networkNameOther!=''">
+      and network_name_other like  "%"#{networkNameOther}"%"
+    </if>
+    <if test="networkIp!=null and networkIp!=''">
+      and network_ip = #{networkIp}
+    </if>
+    <if test="insertName!=null and insertName!=''">
+      and insert_name like "%"#{insertName}"%"
+    </if>
+    <if test="insertNameOther!=null and insertNameOther!=''">
+      and insert_name_other like  "%"#{insertNameOther}"%"
+    </if>
+    <if test="insertIp!=null and insertIp!=''">
+      and insert_ip = #{insertIp}
+    </if>
+    <if test="customer!=null and customer!=''">
+      and customer like "%"#{customer}"%"
+    </if>
+    <if test="wfId!=null and wfId!=''">
+      and wf_id =#{wfId}
+    </if>
+    <if test="userIp!=null and userIp!=''">
+      and user_ip like "%"#{userIp}"%"
+    </if>
+    <if test="produceNumber!=null and produceNumber!=''">
+      and produce_number like "%"#{produceNumber}"%"
+    </if>
+
+    <if test="id!=null and id!=''">
+    and id=#{id}</if>
+
+    <if test="deleteDate!=null and deleteDate!=''">
+      and delete_date like "%"#{deleteDate}"%"</if>
+  </select>
+
+  <insert id="add">
+      INSERT INTO  history_customer_table (id,customer,business_type,produce_number,network_name,network_name_other,network_ip,
+                                     network_port,insert_name,insert_name_other,insert_ip,insert_port,vlan_id,wf_id,electric_id,
+                                     connect_ip,user_ip,ip_num,insert_speed,link_people,link_phone,customer_address,
+                                     open_date,up_date,same_band,remark,is_80,delete_date)
+                         VALUES (#{id},#{customer},#{businessType},#{produceNumber},#{networkName},#{networkNameOther},#{networkIp},
+                                 #{networkPort},#{insertName},#{insertNameOther},#{insertIp},#{insertPort},#{vlanId},#{wfId},#{electricId},
+                                 #{connectIp},#{userIp},#{ipNum},#{insertSpeed},#{linkPeople},#{linkPhone},#{customerAddress},
+                                 #{openDate},#{upDate},#{sameBand},#{remark},#{is80},#{deleteDate})
+  </insert>
+</mapper>

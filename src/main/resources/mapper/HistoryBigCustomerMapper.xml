@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.HistoryBigCustomerMapper">
+  <resultMap id="HistoryBigCustomer" type="com.company.project.model.HistoryBigCustomer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="engineering_unified_work_order_number" jdbcType="VARCHAR" property="engineeringUnifiedWorkOrderNumber" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="one_stop_flow_number" jdbcType="VARCHAR" property="oneStopFlowNumber" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="a_point" jdbcType="VARCHAR" property="aPoint" />
+    <result column="z_point" jdbcType="VARCHAR" property="zPoint" />
+    <result column="town" jdbcType="VARCHAR" property="town" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="old_customer_name" jdbcType="VARCHAR" property="oldCustomerName" />
+    <result column="standard_customer_name" jdbcType="VARCHAR" property="standardCustomerName" />
+    <result column="product_number" jdbcType="VARCHAR" property="productNumber" />
+    <result column="is_collectors" jdbcType="VARCHAR" property="isCollectors" />
+    <result column="top_list_ident" jdbcType="VARCHAR" property="topListIdent" />
+    <result column="customer_grade" jdbcType="VARCHAR" property="customerGrade" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="circuit_type" jdbcType="VARCHAR" property="circuitType" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="number_of_circuit_bars" jdbcType="VARCHAR" property="numberOfCircuitBars" />
+    <result column="first_route" jdbcType="VARCHAR" property="firstRoute" />
+    <result column="second_route" jdbcType="VARCHAR" property="secondRoute" />
+    <result column="customer_usage_features" jdbcType="VARCHAR" property="customerUsageFeatures" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="customer_contact" jdbcType="VARCHAR" property="customerContact" />
+    <result column="customer_telephone" jdbcType="VARCHAR" property="customerTelephone" />
+    <result column="z_point_customer_address" jdbcType="VARCHAR" property="zPointCustomerAddress" />
+    <result column="a_point_customer_address" jdbcType="VARCHAR" property="aPointCustomerAddress" />
+    <result column="self_division_manager" jdbcType="VARCHAR" property="selfDivisionManager" />
+    <result column="self_division_telephone" jdbcType="VARCHAR" property="selfDivisionTelephone" />
+    <result column="self_division_mail" jdbcType="VARCHAR" property="selfDivisionMail" />
+    <result column="access_station" jdbcType="VARCHAR" property="accessStation" />
+    <result column="customer_equip_install_info" jdbcType="VARCHAR" property="customerEquipInstallInfo" />
+    <result column="business_opening_date" jdbcType="VARCHAR" property="businessOpeningDate" />
+    <result column="ledger_update_time" jdbcType="VARCHAR" property="ledgerUpdateTime" />
+    <result column="comment1" jdbcType="VARCHAR" property="comment1" />
+    <result column="comment2" jdbcType="VARCHAR" property="comment2" />
+    <result column="delete_date" jdbcType="VARCHAR" property="deleteDate" />
+    <result column="circuit_number" jdbcType="LONGVARCHAR" property="circuitNumber" />
+    <result column="number_or_ip_resource" jdbcType="LONGVARCHAR" property="numberOrIpResource" />
+    <result column="local_transmission_info" jdbcType="LONGVARCHAR" property="localTransmissionInfo" />
+  </resultMap>
+
+  <select id="list" resultMap="HistoryBigCustomer">
+    select * from history_big_customer where 1=1
+      <if test="id!=null and id!=''">
+          and id =#{id}
+      </if>
+      <if test="orderNumber!=null and orderNumber!=''">
+          AND order_number like "%"#{orderNumber}"%"
+      </if>
+      <if test="engineeringUnifiedWorkOrderNumber!=null and engineeringUnifiedWorkOrderNumber!='' ">
+          AND engineering_unified_work_order_number =#{engineeringUnifiedWorkOrderNumber}
+      </if>
+      <if test="orderNo!=null and orderNo!=''">
+          AND order_no =#{orderNo}
+      </if>
+      <if test="oldCustomerName!=null and oldCustomerName!=''">
+          AND old_customer_name like  "%" #{oldCustomerName} "%"
+      </if>
+      <if test="standardCustomerName!=null and standardCustomerName!=''">
+          AND standard_customer_name like  "%" #{standardCustomerName} "%"
+      </if>
+      <if test="productNumber!=null and productNumber!=''">
+          AND product_number =#{productNumber}
+      </if>
+      <if test="oneStopFlowNumber !=null and oneStopFlowNumber !=''">
+          AND one_stop_flow_number=#{oneStopFlowNumber}
+      </if>
+      <if test="aPoint !=null and aPoint!=''">
+          AND a_point = #{aPoint}
+      </if>
+
+      <if test="zPoint != null and zPoint!=''">
+          AND z_point = #{zPoint}
+      </if>
+
+      <if test="town!=null and town!=''">
+          AND town=#{town}
+      </if>
+
+      <if test="area!=null and area!=''">
+          AND area=#{area}
+      </if>
+
+      <if test="customerUsageFeatures!=null and customerUsageFeatures!=''">
+          AND customer_usage_features=#{customerUsageFeatures}
+      </if>
+
+      <if test="isCollectors!=null and isCollectors!=''">
+          AND is_collectors = #{isCollectors}
+      </if>
+
+      <if test="topListIdent!=null and topListIdent!=''">
+          AND top_list_ident=#{topListIdent}
+      </if>
+
+      <if test="customerGrade!=null and customerGrade!=''">
+          AND customer_grade=#{customerGrade}
+      </if>
+
+      <if test="rate!=null and rate!=''">
+          AND rate=#{rate}
+      </if>
+
+      <if test="circuitType!=null and circuitType!=''">
+          AND circuit_type=#{circuitType}
+      </if>
+
+      <if test="businessType !=null and businessType !=''">
+          AND business_type=#{businessType}
+      </if>
+
+      <if test="level !=null and level !=''">
+          AND level=#{level}
+      </if>
+
+      <if test="numberOfCircuitBars!=null and numberOfCircuitBars!=''">
+          AND number_of_circuit_bars=#{numberOfCircuitBars}
+      </if>
+
+      <if test="firstRoute!=null and firstRoute!=''">
+          AND first_route=#{firstRoute}
+      </if>
+
+      <if test="secondRoute!=null and secondRoute!=''">
+          AND second_route=#{secondRoute}
+      </if>
+
+      <if test="industry!=null and industry!=''">
+          AND industry=#{industry}
+      </if>
+      <if test="customerContact!=null and customerContact!=''">
+          AND customer_contact=#{customerContact}
+      </if>
+
+      <if test="customerTelephone!=null and customerTelephone!=''">
+          AND customer_telephone=#{customerTelephone}
+      </if>
+
+      <if test="aPointCustomerAddress!=null and aPointCustomerAddress!=''">
+          AND a_point_customer_address=#{aPointCustomerAddress}
+      </if>
+
+      <if test="selfDivisionManager!=null and selfDivisionManager!=''">
+          AND self_division_manager=#{selfDivisionManager}
+      </if>
+
+      <if test="selfDivisionTelephone!=null and selfDivisionTelephone!=''">
+          AND self_division_telephone=#{selfDivisionTelephone}
+      </if>
+
+      <if test="selfDivisionMail!=null and selfDivisionMail!=''">
+          AND self_division_mail=#{selfDivisionMail}
+      </if>
+
+      <if test="accessStation!=null and accessStation!=''">
+          AND access_station=#{accessStation}
+      </if>
+
+      <if test="customerEquipInstallInfo!=null and customerEquipInstallInfo!=''">
+          AND customer_equip_install_info=#{customerEquipInstallInfo}
+      </if>
+
+      <if test="ledgerUpdateTime!=null and ledgerUpdateTime!=''">
+          AND ledger_update_time like "%"#{ledgerUpdateTime}"%"
+      </if>
+
+      <if test="circuitNumber!=null and circuitNumber!=''">
+          AND circuit_number like "%"#{circuitNumber}"%"
+      </if>
+
+      <if test="numberOrIpResource!=null and numberOrIpResource!=''">
+          AND number_or_ip_resource=#{numberOrIpResource}
+      </if>
+
+      <if test="businessOpeningDate!=null and businessOpeningDate!=''">
+          AND business_opening_date like "%"#{businessOpeningDate}"%"
+      </if>
+
+      <if test="localTransmissionInfo!=null and localTransmissionInfo!=''">
+          AND local_transmission_info=#{localTransmissionInfo}
+      </if>
+
+      <if test="zPointCustomerAddress!=null and zPointCustomerAddress!=''">
+          AND z_point_customer_address=#{zPointCustomerAddress}
+      </if>
+
+      <if test="comment1!=null and comment1!=''">
+          AND comment1 like "%"#{comment1}"%"
+      </if>
+
+      <if test="comment2!=null and comment2!=''">
+          AND comment2 like"%"#{comment2}"%"
+      </if>
+
+      <if test="deleteDate!=null and deleteDate!=''">
+          AND delete_date like "%"#{deleteDate}"%"
+      </if>
+  </select>
+
+    <insert id="add">
+     insert into history_big_customer
+     (id,engineering_unified_work_order_number,order_number,one_stop_flow_number,order_no,a_point,z_point,town,area,old_customer_name,
+     standard_customer_name,circuit_number,product_number,is_collectors,top_list_ident,customer_grade,rate,circuit_type,business_type,
+     level,number_of_circuit_bars,first_route,second_route,customer_usage_features,industry,customer_contact,customer_telephone,z_point_customer_address,
+     a_point_customer_address,self_division_manager,self_division_telephone,self_division_mail,access_station,local_transmission_info,
+     customer_equip_install_info,comment1,comment2,business_opening_date,ledger_update_time,number_or_ip_resource,delete_date)
+     values
+     (#{id},#{engineeringUnifiedWorkOrderNumber},#{orderNumber},#{oneStopFlowNumber},#{orderNo},#{aPoint},#{zPoint},#{town},#{area},#{oldCustomerName},
+     #{standardCustomerName},#{circuitNumber},#{productNumber},#{isCollectors},#{topListIdent},#{customerGrade},#{rate},#{circuitType},#{businessType},
+     #{level},#{numberOfCircuitBars},#{firstRoute},#{secondRoute},#{customerUsageFeatures},#{industry},#{customerContact},#{customerTelephone},#{zPointCustomerAddress},
+     #{aPointCustomerAddress},#{selfDivisionManager},#{selfDivisionTelephone},#{selfDivisionMail},#{accessStation},#{localTransmissionInfo},
+     #{customerEquipInstallInfo},#{comment1},#{comment2},#{businessOpeningDate},#{ledgerUpdateTime},#{numberOrIpResource},#{deleteDate})
+   </insert>
+</mapper>

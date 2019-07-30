@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.IpAddressNewMapper">
+    <resultMap id="ipAddressNew" type="com.company.project.model.IpAddressNew">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="begin_ip" jdbcType="VARCHAR" property="beginIp"/>
+        <result column="begin_ip_long" jdbcType="VARCHAR" property="beginIpLong"/>
+        <result column="end_ip" jdbcType="VARCHAR" property="endIp"/>
+        <result column="end_ip_long" jdbcType="VARCHAR" property="endIpLong"/>
+        <result column="ip_num" jdbcType="INTEGER" property="ipNum"/>
+        <result column="mask_length" jdbcType="INTEGER" property="maskLength"/>
+        <result column="is_use" jdbcType="VARCHAR" property="isUse"/>
+        <result column="ip_type" jdbcType="VARCHAR" property="ipType"/>
+        <result column="wf_id" jdbcType="VARCHAR" property="wfId"/>
+        <result column="customer_name" jdbcType="VARCHAR" property="customerName"/>
+        <result column="product_number" jdbcType="VARCHAR" property="productNumber"/>
+        <result column="use_date" jdbcType="TIMESTAMP" property="useDate"/>
+        <result column="unuse_date" jdbcType="TIMESTAMP" property="unuseDate"/>
+        <result column="remark" jdbcType="LONGVARCHAR" property="remark"/>
+    </resultMap>
+
+<resultMap id="IpUseInformation" type="java.util.HashMap">
+    <result column="is_use" jdbcType="VARCHAR" property="isUse"/>
+    <result column="ip_type" jdbcType="VARCHAR" property="ipType"/>
+    <result column="ip_num" jdbcType="INTEGER" property="ipNum"/>
+</resultMap>
+
+    <!--查询-->
+    <select id="selectIpAddressNew" resultMap="ipAddressNew">
+        select * from ip_address_new
+    </select>
+    <!--查询-->
+    <select id="selectIpAddressNewById" resultMap="ipAddressNew">
+        select * from ip_address_new where id=#{id}
+    </select>
+    <!--起始IP查询-->
+    <select id="selectIpAddressNewByBeginIp" resultMap="ipAddressNew">
+        select * from ip_address_new where begin_ip=#{beginIp} limit 1
+    </select>
+    <!--IP数目查询-->
+    <select id="selectIpAddressNewByIpNum" resultMap="ipAddressNew">
+        select * from ip_address_new where ip_num=#{ipNum}
+    </select>
+    <!--结束IP查询-->
+    <select id="selectIpAddressNewByEndIp" resultMap="ipAddressNew">
+        select * from ip_address_new where end_ip=#{endIp}
+    </select>
+
+    <!--范围IP查询-->
+    <select id="selectIpAddressNewByRangeIp" resultMap="ipAddressNew">
+        select * from ip_address_new where 1=1
+        <if test="beginIpLong!=null and beginIpLong!=''">
+            and begin_ip_long &lt;= #{beginIpLong}
+        </if>
+        <if test="endIpLong!=null and endIpLong!=''">
+            and end_ip_long &gt;=#{endIpLong}
+        </if>
+    </select>
+
+    <!--业务开通：IP数目、业务类型和使用情况（预留）查询-->
+    <select id="selectIpAddressNewByBuOpen"  resultMap="ipAddressNew">
+        select *
+        from ip_address_new
+        where 1=1
+        <if test="ipNum!=null and ipNum!=''">
+            and ip_num = #{ipNum}
+        </if>
+        <if test="ipType!=null and ipType!=''">
+            and ip_type like "%"#{ipType}"%"
+        </if>
+        <if test="isUse!=null and isUse!=''">
+            and is_use like "%"#{isUse}"%"
+        </if>
+
+        <if test="beginIpLong!=null and beginIpLong!=''">
+            and begin_ip_long &gt;=#{beginIpLong}
+        </if>
+        <if test="endIpLong!=null and endIpLong!=''">
+            and end_ip_long &lt;=#{endIpLong}
+        </if>
+        /*
+        *排序asc升序
+        *desc降序
+        **/
+        /*order by remark asc*/
+    </select>
+
+
+
+
+    <!--台账查询：用户IP、客户名称、产品号码、工单号、开通时间-->
+    <select id="selectIpAddressNewByLookFor"  resultMap="ipAddressNew">
+        select *
+        from ip_address_new
+        where 1=1
+        <if test="beginIp!=null and beginIp!=''">
+            and begin_ip= #{beginIp}
+        </if>
+        <if test="endIp!=null and endIp!=''">
+            and end_ip= #{endIp}
+        </if>
+
+        <if test="customerName!=null and customerName!=''">
+            and customer_name like "%"#{customerName}"%"
+        </if>
+        <if test="productNumber!=null and productNumber!=''">
+            and product_number like "%"#{productNumber}"%"
+        </if>
+        <if test="wfId!=null and wfId!=''">
+            and wf_id like "%"#{wfId}"%"
+        </if>
+        <if test="useDate!=null and useDate!=''">
+            and use_date like "%"#{useDate}"%"
+        </if>
+        /*
+        *排序asc升序
+        *desc降序
+        **/
+        /*order by remark asc*/
+    </select>
+
+    <!--更新-->
+    <update id="updateIpAddressNewByFindAll" >
+
+        update ip_address_new set id=#{id},
+        /*
+        *可以增设触发器，关联掩码和IP地址数量，和IP地址段
+        **/
+        <if test="beginIp!=null and beginIp!=''">
+            begin_ip=#{beginIp},
+
+        </if>
+        <if test="beginIpLong!=null and beginIpLong!=''">
+            begin_ip_long=#{beginIpLong},
+
+        </if>
+        <if test="endIp!=null and endIp!=''">
+            end_ip=#{endIp},
+
+        </if>
+        <if test="endIpLong!=null and endIpLong!=''">
+            end_ip_long=#{endIpLong},
+
+        </if>
+        <if test="maskLength!=null and maskLength!=''">
+            mask_length=#{maskLength},
+
+        </if>
+        <if test="ipNum!=null and ipNum!=''">
+            ip_Num=#{ipNum},
+        </if>
+        <if test="isUse!=null and isUse!=''">
+            is_use=#{isUse},
+        </if>
+        <if test="ipType!=null and ipType!=''">
+            ip_Type=#{ipType},
+        </if>
+        <if test="wfId!=null and wfId!=''">
+            wf_id=#{wfId},
+        </if>
+        <if test="customerName!=null and customerName!=''">
+            customer_name=#{customerName},
+        </if>
+        <if test="productNumber!=null and productNumber!=''">
+            product_number=#{productNumber},
+        </if>
+        <if test="useDate!=null">
+            use_date=#{useDate},
+        </if>
+        <if test="unuseDate!=null">
+            unuse_date=#{unuseDate},
+        </if>
+        <if test="remark!=null and remark!=''">
+            remark=#{remark},
+        </if>
+
+        id=#{id} where id=#{id};
+    </update>
+
+    <!--删除##根据起始IP或结束IP删除表内数据-->
+    <delete id="deleteIpAddressNewByFindAll">
+    delete from ip_address_new where id=#{id}
+    </delete>
+
+
+    <!--添加-->
+    <insert id="insertIpAddressNewByFindAll">
+     insert ip_address_new (begin_ip,begin_ip_long,end_ip,end_ip_long,ip_num,mask_length,is_use,ip_type)
+                    VALUES (#{beginIp},#{beginIpLong},#{endIp},#{endIpLong},#{ipNum},#{maskLength},#{isUse},#{ipType})
+    </insert>
+
+	 <!--
+ ***************************************************************************************
+  -->
+
+   <select id="queryByBeginIp" resultMap="ipAddressNew">
+    select * from ip_address_new where begin_ip like CONCAT('%',#{beginIp},'%') ;
+  </select>
+
+
+  <select id="query" resultMap="ipAddressNew">
+    select * from ip_address_new where begin_ip=#{beginIp} ;
+  </select>
+
+ <!-- <select id="combine" resultMap="IpAndEquip">
+    Select equip_name,ip_type from ip_address_new,equip_table where begin_ip=manage_ip
+
+  </select>-->
+
+   <update id="updateTable" >
+     update  ip_address_new set begin_ip=#{beginIp},begin_ip_long=#{beginIpLong},end_ip=#{endIp},end_ip_long=#{endIpLong},ip_num=#{ipNum},mask_length=#{maskLength},is_use=#{isUse},ip_Type=#{ipType},wf_id=#{wfId},customer_name=#{customerName},product_number=#{productNumber},use_date=#{useDate},unuse_date=#{unuseDate},remark=#{remark} where id=#{id}
+   </update>
+
+  <insert id="addTable">
+     insert into ip_address_new (id,begin_ip,end_ip) values(#{id},#{beginIp},#{endIp})
+   </insert>
+
+  <delete id="deleteTable" >
+     delete from  ip_address_new  where begin_ip=#{beginIp}
+   </delete>
+   <select id="ipUseInfo"  resultType="hashMap">
+  select sum(ip_num)as number,is_use,ip_type from ip_address_new group by ip_type,is_use
+</select>
+</mapper>

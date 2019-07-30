@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.EquipTableMapper">
+  <resultMap id="EquipTable" type="com.company.project.model.EquipTable">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="equip_name" jdbcType="VARCHAR" property="equipName" />
+    <result column="equip_name_other" jdbcType="VARCHAR" property="equipNameOther" />
+    <result column="net_level" jdbcType="VARCHAR" property="netLevel" />
+    <result column="manage_Ip" jdbcType="VARCHAR" property="manageIp" />
+    <result column="factory" jdbcType="VARCHAR" property="factory" />
+    <result column="equip_type" jdbcType="VARCHAR" property="equipType" />
+    <result column="equip_model" jdbcType="VARCHAR" property="equipModel" />
+    <result column="equip_address" jdbcType="VARCHAR" property="equipAddress" />
+  </resultMap>
+
+ <!--
+ ***************************************************************************************
+  -->
+  <select id="queryByManageIp" resultMap="EquipTable">
+    select * from equip_table where manage_Ip like CONCAT('%',#{mangageIp},'%')
+  </select>
+
+  <update id="updateEquip"  >
+    update  equip_table set manage_Ip=#{manageIp},equip_name=#{equipName},equip_name_other=#{equipNameOther},net_level=#{netLevel},factory=#{factory},equip_type=#{equipType},equip_model=#{equipModel},equip_address=#{equipAddress} where id=#{id}
+  </update>
+
+<insert id="addEquip" >
+  insert into equip_table(id,equip_name,equip_name_other,net_level,manage_Ip,factory,equip_type,equip_model,equip_address) values(#{id},#{equipName},#{equipNameOther},#{netLevel},#{manageIp},#{factory},#{equipType},#{equipModel},#{equipAddress})
+</insert>
+
+  <delete id="deleteEquip" >
+    delete from equip_table where
+    <if test="id!=null">id=#{id}</if>
+    <if test="manageIp!=null">  OR manage_ip=#{manageIp}</if>
+    <if test="equipName!=null"> OR equip_name=#{equipName} </if>
+    <if test="equipNameOther!=null">OR equip_name_other=#{equipNameOther} </if>
+
+  </delete>
+
+
+  <select id="queryEquip" resultMap="EquipTable">
+    select * from equip_table where 1=1
+    <if test="manageIp!=null and manageIp!=''"> AND manage_Ip = #{manageIp}</if>
+    <if test="equipName!=null and equipName!=''">AND equip_name like "%" #{equipName} "%"</if>
+    <if test="equipNameOther !=null and equipNameOther!=''">AND equip_name_other like "%" #{equipNameOther} "%"</if>
+    <if test="factory !=null and factory!=''">AND factory =#{factory}</if>
+    <if test="equipType !=null and equipType!=''">AND equip_type like "%" #{equipType} "%"</if>
+    <if test="equipModel !=null and equipModel!=''">AND equip_Model like "%" #{equipModel} "%"</if>
+    <if test="equipAddress !=null and equipAddress!=''">AND equip_address like "%" #{equipAddress} "%"</if>
+    <if test="netLevel !=null and netLevel!=''">AND net_level like "%" #{netLevel} "%"</if>
+    <if test="id !=null and id !=''">AND id = #{id}</if>
+
+  </select>
+</mapper>
